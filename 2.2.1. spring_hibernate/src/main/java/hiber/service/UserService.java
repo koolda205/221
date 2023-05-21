@@ -14,6 +14,6 @@ public interface UserService {
 
     User getUserById(Long id);
 
-    void getUserByCarId(int carId);
+    void getUserByCarId(int id);
 }
 

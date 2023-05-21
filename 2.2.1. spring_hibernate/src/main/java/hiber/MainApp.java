@@ -33,7 +33,7 @@ public class MainApp {
 
 //      System.out.println(userService.getUserById(5L));
 //      userService.removeUserById(5L);
-      userService.getUserByCarId (6);
+      userService.getUserByCarId (4);
 
       context.close();
    }

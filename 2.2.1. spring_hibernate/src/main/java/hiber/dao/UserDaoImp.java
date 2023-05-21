@@ -71,26 +71,13 @@ public class UserDaoImp implements UserDao {
       return user;
    }
    @Override
-   public void getUserByCarId(int carId){
+   public void getUserByCarId(int id){
       Session session = sessionFactory.openSession();
       Transaction transaction = session.beginTransaction();
-      String user = null;
-      String hql = "SELECT cars.*, users.`name` as `user_name`\n" +
-                 "FROM cars INNER JOIN users ON (cars.`id`=users.`id`)\n" +
-                 "WHERE cars.`id`= " + carId;
-      try {
-//         user = (User) session.createQuery(hql, Car.class);
-//         car = session.createQuery(hql, Car.class).setParameter("addrId", 1).uniqueResult();
-         Query query = session.createQuery(hql, Car.class);
-         user = query.toString();
-         transaction.commit();
-      } catch (HibernateException | IllegalArgumentException e) {
-         System.err.println("Не удалось получить UserByCarId");
-         if (transaction != null) {
-            transaction.rollback();
-         }
-      } finally {
-         session.close();
-      }
+
+      Car car = session.get(Car.class, id);
+      System.out.println(car.getUser());
+      transaction.commit();
+      session.close();
    }
 }

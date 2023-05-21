@@ -33,9 +33,10 @@ public class UserServiceImp implements UserService {
    public User getUserById(Long id){
       return userDao.getUserById(id);
    }
+
    @Override
-   public void getUserByCarId(int carId){
-      userDao.getUserByCarId(carId);
+   public void getUserByCarId(int id){
+      userDao.getUserByCarId(id);
    }
 
 }

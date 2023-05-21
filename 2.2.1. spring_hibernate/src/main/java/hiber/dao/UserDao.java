@@ -14,5 +14,5 @@ public interface UserDao {
 
    User getUserById(Long id);
 
-   void getUserByCarId (int carId);
+   void getUserByCarId (int id);
 }
