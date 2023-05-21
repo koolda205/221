@@ -16,8 +16,6 @@ public class MainApp {
 
       UserService userService = context.getBean(UserService.class);
 
-      System.out.println(userService.getUserById(2L));
-      userService.removeUserById(3L);
 //      userService.add(new User("User1", "Lastname1", "user1@mail.ru,", new Car("Lada", 9)));
 //      userService.add(new User("User2", "Lastname2", "user2@mail.ru,", new Car("Lada", 10)));
 //      userService.add(new User("User2", "Lastname2", "user2@mail.ru"));
@@ -32,6 +30,10 @@ public class MainApp {
 //         System.out.println("Email = " + user.getEmail());
 //         System.out.println("Car = " + user.getCar());
 //      }
+
+//      System.out.println(userService.getUserById(5L));
+//      userService.removeUserById(5L);
+      userService.getUserByCarId (6);
 
       context.close();
    }

@@ -1,5 +1,6 @@
 package hiber.dao;
 
+import hiber.model.Car;
 import hiber.model.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -8,6 +9,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.sql.SQLException;
 import java.util.List;
@@ -23,6 +25,14 @@ public class UserDaoImp implements UserDao {
    public void add(User user) {
       sessionFactory.getCurrentSession().save(user);
    }
+
+   @Override
+   @SuppressWarnings("unchecked")
+   public List<User> listUsers() {
+      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
+      return query.getResultList();
+   }
+
 
    @Override
    public void removeUserById(Long id) {
@@ -60,13 +70,27 @@ public class UserDaoImp implements UserDao {
       }
       return user;
    }
-
-
    @Override
-   @SuppressWarnings("unchecked")
-   public List<User> listUsers() {
-      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
-      return query.getResultList();
+   public void getUserByCarId(int carId){
+      Session session = sessionFactory.openSession();
+      Transaction transaction = session.beginTransaction();
+      String user = null;
+      String hql = "SELECT cars.*, users.`name` as `user_name`\n" +
+                 "FROM cars INNER JOIN users ON (cars.`id`=users.`id`)\n" +
+                 "WHERE cars.`id`= " + carId;
+      try {
+//         user = (User) session.createQuery(hql, Car.class);
+//         car = session.createQuery(hql, Car.class).setParameter("addrId", 1).uniqueResult();
+         Query query = session.createQuery(hql, Car.class);
+         user = query.toString();
+         transaction.commit();
+      } catch (HibernateException | IllegalArgumentException e) {
+         System.err.println("Не удалось получить UserByCarId");
+         if (transaction != null) {
+            transaction.rollback();
+         }
+      } finally {
+         session.close();
+      }
    }
-
 }
