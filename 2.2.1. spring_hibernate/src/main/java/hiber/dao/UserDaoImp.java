@@ -74,9 +74,23 @@ public class UserDaoImp implements UserDao {
    public void getUserByCarId(int id){
       Session session = sessionFactory.openSession();
       Transaction transaction = session.beginTransaction();
-
       Car car = session.get(Car.class, id);
       System.out.println(car.getUser());
+      transaction.commit();
+      session.close();
+   }
+
+   @Override
+   public void getUserByCar(String carModel, int carSeries){
+
+      Session session = sessionFactory.openSession();
+      Transaction transaction = session.beginTransaction();
+      String selectCarModel = "FROM Car where model = :paramModel";
+      Query queryCarModel = session.createQuery(selectCarModel);
+      queryCarModel.setParameter("paramModel", carModel);
+      List<Car> car = queryCarModel.getResultList();
+
+      System.out.println(car);
       transaction.commit();
       session.close();
    }

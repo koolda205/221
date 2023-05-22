@@ -39,4 +39,9 @@ public class UserServiceImp implements UserService {
       userDao.getUserByCarId(id);
    }
 
+   @Override
+   public void getUserByCar(String carModel, int carSeries){
+      userDao.getUserByCar(carModel, carSeries );
+   }
+
 }

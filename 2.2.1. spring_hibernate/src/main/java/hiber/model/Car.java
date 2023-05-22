@@ -43,7 +43,7 @@ public class Car {
       this.series = series;
    }
 
-   public int getSeries() {
+   public int getSeries(int carSeries) {
       return series;
    }
 

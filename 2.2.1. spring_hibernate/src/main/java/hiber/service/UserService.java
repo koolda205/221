@@ -15,5 +15,8 @@ public interface UserService {
     User getUserById(Long id);
 
     void getUserByCarId(int id);
+
+    void getUserByCar(String carModel, int carSeries);
+
 }
 
