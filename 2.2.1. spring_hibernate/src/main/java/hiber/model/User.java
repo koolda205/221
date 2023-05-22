@@ -3,10 +3,11 @@ package hiber.model;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "user")
+public class User implements Serializable {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,8 @@ public class User {
 //   private Car car;
 
    @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "cars_id")
+//   @JoinColumn(name = "cars_id", referencedColumnName = "id")
+   @JoinColumn(name = "car_id")
    private Car car;
 
    public User() {}
