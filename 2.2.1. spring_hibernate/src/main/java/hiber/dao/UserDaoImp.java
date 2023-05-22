@@ -27,17 +27,11 @@ public class UserDaoImp implements UserDao {
    }
 
    @Override
-   public void add(Car car) {
-      sessionFactory.getCurrentSession().save(car);
-   }
-
-   @Override
    @SuppressWarnings("unchecked")
    public List<User> listUsers() {
       TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
       return query.getResultList();
    }
-
 
    @Override
    public void removeUserById(Long id) {
@@ -84,29 +78,11 @@ public class UserDaoImp implements UserDao {
       transaction.commit();
       session.close();
    }
-
-
    @Override
-//   public void getUserByCar(String carModel, int carSeries){
-//
-//      Session session = sessionFactory.openSession();
-//      Transaction transaction = session.beginTransaction();
-//      String selectCarModel = "FROM Car where model = :paramModel";
-//      Query queryCarModel = session.createQuery(selectCarModel);
-//      queryCarModel.setParameter("paramModel", carModel);
-//      List<Car> car = queryCarModel.getResultList();
-//
-//      System.out.println(car);
-//      transaction.commit();
-//      session.close();
-//   }
-
    public void getUserByCar(String carModel, int carSeries){
-
       Session session = sessionFactory.openSession();
       Transaction transaction = session.beginTransaction();
-//      String selectCarModel = "FROM Car where model = :paramModel";
-      String selectCarModel = "FROM Car car LEFT OUTER JOIN FETCH car.user WHERE car.model=:paramModel";
+      String selectCarModel = "FROM Car where model = :paramModel";
       Query queryCarModel = session.createQuery(selectCarModel, Car.class);
       queryCarModel.setParameter("paramModel", carModel);
       List<Car> car = queryCarModel.getResultList();

@@ -1,7 +1,5 @@
 package hiber.model;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -22,13 +20,7 @@ public class User implements Serializable {
    @Column(name = "email")
    private String email;
 
-//   @OneToOne
-//   @MapsId
-//   @JoinColumn(name = "car_id")
-//   private Car car;
-
    @OneToOne(cascade = CascadeType.ALL)
-//   @JoinColumn(name = "cars_id", referencedColumnName = "id")
    @JoinColumn(name = "car_id")
    private Car car;
 
