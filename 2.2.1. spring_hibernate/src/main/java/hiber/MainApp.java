@@ -6,7 +6,6 @@ import hiber.model.User;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import javax.persistence.NoResultException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class MainApp {
          System.out.println("Car = " + user.getCar());
       }
 
-      System.out.println(userService.getUserByCar("Lada1", 1));
+      System.out.println(userService.getUserByCar("Lada", 1));
 
       context.close();
    }

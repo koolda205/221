@@ -35,10 +35,17 @@ public class UserDaoImp implements UserDao {
    @Override
    @SuppressWarnings("unchecked")
    public User getUserByCar(String model, int series) {
+      TypedQuery<User> query = null;
+      User user = null;
+      try{
       String hql = "from User user where user.car.model = :model and user.car.series = :series";
-      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(hql);
+      query = sessionFactory.getCurrentSession().createQuery(hql);
       query.setParameter("model", model).setParameter("series", series);
-      return query.setMaxResults(1).getSingleResult();
+      user = query.setMaxResults(1).getSingleResult();
+      } catch (Exception e) {
+         System.err.println("User not found");
+      }
+      return user;
    }
 
 }
