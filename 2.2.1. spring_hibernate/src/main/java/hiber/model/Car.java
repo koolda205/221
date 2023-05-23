@@ -7,61 +7,63 @@ import java.io.Serializable;
 @Table(name = "car")
 public class Car implements Serializable {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-   @Column(name = "model")
-   private String model;
+    @Column(name = "model")
+    private String model;
 
-   @Column(name = "series")
-   private int series;
+    @Column(name = "series")
+    private int series;
 
-   @OneToOne (mappedBy = "car",
-   cascade = CascadeType.ALL)
-   private User user;
+    @OneToOne(mappedBy = "car",
+            cascade = CascadeType.ALL)
+    private User user;
 
-    public Car() {}
+    public Car() {
+    }
 
-   public Car(String model, int series) {
-      this.model = model;
-      this.series = series;
-   }
+    public Car(String model, int series) {
+        this.model = model;
+        this.series = series;
+    }
 
-   public void setId(int id) {
-      this.id = id;
-   }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-   public int getId() {
-      return id;
-   }
+    public int getId() {
+        return id;
+    }
 
-   public String getModel() {
-      return model;
-   }
+    public String getModel() {
+        return model;
+    }
 
-   public void setSeries(int series) {
-      this.series = series;
-   }
+    public void setSeries(int series) {
+        this.series = series;
+    }
 
-   public int getSeries(int carSeries) {
-      return series;
-   }
+    public int getSeries(int carSeries) {
+        return series;
+    }
 
-   public User getUser() {
-      return user;
-   }
+    public User getUser() {
+        return user;
+    }
 
-   public void setUser(User user) {
-      this.user = user;
-   }
+    public User setUser(User user) {
+        this.user = user;
+        return user;
+    }
 
-   @Override
-   public String toString() {
-      return "Car{" +
-              "id=" + id +
-              ", model='" + model + '\'' +
-              ", series=" + series +
-              '}';
-   }
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", series=" + series +
+                '}';
+    }
 }
