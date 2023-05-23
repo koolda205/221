@@ -48,7 +48,7 @@ public class MainApp {
 
         userService.removeUserById(10L);
 
-        System.out.println("==============================");
+        System.out.println("===============================");
 
         userService.getUserByCar("Lada1", 1);
 
