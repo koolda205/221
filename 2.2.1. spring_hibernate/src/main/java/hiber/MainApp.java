@@ -42,7 +42,7 @@ public class MainApp {
          System.out.println("Car = " + user.getCar());
       }
 
-      System.out.println(userService.getUserByCar("Lada", 1));
+      System.out.println(userService.getUserByCar("Lada4", 4));
 
       context.close();
    }
